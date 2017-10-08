@@ -227,6 +227,7 @@ class ReactExoplayerView extends FrameLayout implements
 
             eventEmitter.loadStart();
             loadVideoStarted = true;
+            player.setPlayWhenReady(true);
         }
     }
 
