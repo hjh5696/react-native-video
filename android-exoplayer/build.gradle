@@ -10,9 +10,27 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+    project.ext {
+        exoplayerPublishEnabled = true
+    }
+    if (it.hasProperty('externalBuildDir')) {
+        if (!new File(externalBuildDir).isAbsolute()) {
+            externalBuildDir = new File(rootDir, externalBuildDir)
+        }
+        buildDir = "${externalBuildDir}/${project.name}"
+    }
+}
+
 dependencies {
     provided 'com.facebook.react:react-native:+'
-    compile 'com.google.android.exoplayer:exoplayer:r2.4.0'
+    compile 'com.google.android.exoplayer:exoplayer:r2.5.3'
     compile('com.google.android.exoplayer:extension-okhttp:r2.4.0') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
